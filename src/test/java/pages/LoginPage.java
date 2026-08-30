@@ -2,11 +2,11 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-
 public class LoginPage {
     private final By usernameInput = By.id("user-name");
     private final By passwordInput = By.id("password");
     private final By loginButton = By.id("login-button");
+    private final By errorWindow = By.xpath("//h3[@data-test='error']");
 
     WebDriver driver;
 
@@ -25,10 +25,10 @@ public class LoginPage {
     }
 
     public boolean errorVisible(){
-        return driver.findElement(By.xpath("//h3[@data-test='error']")).isDisplayed();
+        return driver.findElement(errorWindow).isDisplayed();
     }
 
     public String getErrorText(){
-        return driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
+        return driver.findElement(errorWindow).getText();
     }
 }
