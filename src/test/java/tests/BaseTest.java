@@ -26,7 +26,7 @@ public class BaseTest {
         productPage = new ProductPage(driver);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void close() {
         driver.manage().deleteAllCookies();
         driver.quit();
