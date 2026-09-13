@@ -1,11 +1,13 @@
 package tests;
 
+import enums.TitleName;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 import static org.testng.Assert.*;
+import static user.UserFactory.withAdminPermission;
 
 public class CartTest extends BaseTest {
     SoftAssert soft = new SoftAssert();
@@ -17,10 +19,12 @@ public class CartTest extends BaseTest {
                         "Sauce Labs Onesie",
                         "Sauce Labs Bike Light",
                         "Sauce Labs Fleece Jacket");
+        System.out.println("checkGoodsInCart is running in thread: " + Thread.currentThread().threadId());
+
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         assertTrue(productPage.isPageTitleVisible());
-        assertEquals(productPage.getPageTitle(), "Products");
+        assertEquals(productPage.getPageTitle(), TitleName.PRODUCTS.getDisplayName());
 
         for (String goodsName : goodsList) {
             productPage.addGoodsToCart(goodsName);

@@ -1,11 +1,13 @@
 package tests;
 
+import enums.TitleName;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
     List<String> goodsList =
@@ -16,10 +18,12 @@ public class ProductsTest extends BaseTest {
 
     @Test()
     public void checkGoodsAdded() {
+        System.out.println("checkGoodsAdded is running in thread: " + Thread.currentThread().threadId());
+
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         assertTrue(productPage.isPageTitleVisible());
-        assertEquals(productPage.getPageTitle(), "Products");
+        assertEquals(productPage.getPageTitle(), TitleName.PRODUCTS.getDisplayName());
 
         for (String goodsName : goodsList) {
             productPage.addGoodsToCart(goodsName);
