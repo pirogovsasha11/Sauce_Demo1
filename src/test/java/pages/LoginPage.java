@@ -1,6 +1,8 @@
 package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
 
 public class LoginPage extends BasePage {
     private final By usernameInput = By.cssSelector(DATA_TEST_PATTERN.formatted("username"));
@@ -12,21 +14,21 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void open(){
+    public void open() {
         driver.get(BASE_URL);
     }
 
-    public void login(String user, String password){
-        driver.findElement(usernameInput).sendKeys(user);
-        driver.findElement(passwordInput).sendKeys(password);
+    public void login(User user) {
+        driver.findElement(usernameInput).sendKeys(user.getUser());
+        driver.findElement(passwordInput).sendKeys(user.getPassword());
         driver.findElement(loginButton).click();
     }
 
-    public boolean errorVisible(){
+    public boolean errorVisible() {
         return driver.findElement(errorWindow).isDisplayed();
     }
 
-    public String getErrorText(){
+    public String getErrorText() {
         return driver.findElement(errorWindow).getText();
     }
 }

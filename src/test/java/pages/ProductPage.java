@@ -9,6 +9,7 @@ public class ProductPage extends BasePage {
             "//*[text()='%s']/ancestor::div[@class='inventory_item']//child::button[text()='Add to cart']";
     private final By pageTitle = By.cssSelector(DATA_TEST_PATTERN.formatted("title"));
     private final By cartBadge = By.cssSelector(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
+    private final By cartLink = By.cssSelector(DATA_TEST_PATTERN.formatted("shopping-cart-link"));
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -43,5 +44,9 @@ public class ProductPage extends BasePage {
 
     public String checkCountersColor() {
         return driver.findElement(cartBadge).getCssValue("background-color");
+    }
+
+    public void switchToCart() {
+        driver.findElement(cartLink).click();
     }
 }
