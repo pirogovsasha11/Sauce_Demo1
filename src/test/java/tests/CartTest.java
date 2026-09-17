@@ -1,6 +1,7 @@
 package tests;
 
 import enums.TitleName;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -9,10 +10,16 @@ import java.util.List;
 import static org.testng.Assert.*;
 import static user.UserFactory.withAdminPermission;
 
+@Epic("Sauce-demo project")
+@Feature("Покупательская корзина")
+@Owner("Alexander, @Pirogov_1989")
 public class CartTest extends BaseTest {
     SoftAssert soft = new SoftAssert();
 
-    @Test()
+    @Story("Отображение добаленых товаров в корзине")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRCY6-60&issueLimit=100")
+    @Test(description = "Проверка наличия добавленых товаров в корзине")
     public void checkGoodsInCart() {
         List<String> goodsList =
                 List.of("Sauce Labs Bolt T-Shirt",

@@ -1,6 +1,7 @@
 package tests;
 
 import enums.TitleName;
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
@@ -9,6 +10,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
+@Epic("Sauce-demo project")
+@Feature("Авторизация на сайте")
+@Owner("Alexander, @Pirogov_1989")
 public class LoginTest extends BaseTest {
     @DataProvider(name = "incorrectData")
     public Object[][] loginData() {
@@ -20,9 +24,10 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "incorrectData", priority = 2)
+    @Story("Ввод невалидных данных пользователя для авторизации")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(description = "Проверка авторизации с невалидными значениями",dataProvider = "incorrectData", priority = 2)
     public void incorrectDataTestSauceDemo(User user, String errorMessage) {
-        System.out.println("incorrectDataTestSauceDemo is running in thread: " + Thread.currentThread().threadId());
         loginPage.open();
         loginPage.login(user);
 
@@ -33,10 +38,10 @@ public class LoginTest extends BaseTest {
         assertEquals(errorText, errorMessage, "Error text does not match");
     }
 
-    @Test(description = "Проверка авторизации", priority = 1, invocationCount = 2)
+    @Story("Ввод валидных данных пользователя для авторизации")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test(description = "Проверка авторизации c валидным значением", priority = 1, invocationCount = 1)
     public void correctUserTestSauceDemo() {
-        System.out.println("correctUserTestSauceDemo is running in thread: " + Thread.currentThread().threadId());
-
         loginPage.open();
         loginPage.login(withAdminPermission());
 
