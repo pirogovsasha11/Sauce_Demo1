@@ -26,4 +26,4 @@ jobs:
         if: always()
         with:
                     name: allure-report
-                    patch: target/side/allure-maven-plugin
+                    path: target/side/allure-maven-plugin
