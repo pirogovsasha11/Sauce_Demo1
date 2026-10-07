@@ -9,15 +9,15 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testing.version>7.12.0</testing.version>
         <selenium.version>4.48.0</selenium.version>
         <webdriver.version>6.3.4</webdriver.version>
         <aspectjweaver.version>1.9.25.1</aspectjweaver.version>
         <allure.version>2.29.1</allure.version>
-        <lombok.version>1.18.48</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
     </properties>
     <dependencies>
         <dependency>
